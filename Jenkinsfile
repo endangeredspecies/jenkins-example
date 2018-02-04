@@ -5,7 +5,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
+                withMaven(maven : 'maven_3.5') {
                     sh 'mvn clean compile'
                 }
             }
@@ -21,11 +21,9 @@ pipeline {
         }
 
 
-        stage ('Deployment Stage') {
+        stage ('appscan application') {
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn deploy'
-                }
+                appscan application: '36db3de9-7006-e811-9127-002590ac753d', credentials: 'Kripa\'s Asoc Account', email: true, name: 'test_pipe_line_static_analysis_02022018', scanner: static-analyzer('C:\\test_repositories\\jenkins-example'), type: 'Static Analyzer'
             }
         }
     }
