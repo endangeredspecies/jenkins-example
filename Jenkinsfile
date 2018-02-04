@@ -5,7 +5,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3.5') {
+                withMaven(maven : 'maven_3.5' ,jdk:'ibm_jdk' ) {
                     bat 'mvn clean compile'
                 }
             }
@@ -14,7 +14,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
+                withMaven(maven : 'maven_3_5_0' ,jdk:'ibm_jdk') {
                     bat 'mvn test'
                 }
             }
